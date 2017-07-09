@@ -26,3 +26,7 @@ su - postgres -c "psql -c \"DROP DATABASE template1;\""
 su - postgres -c "psql -c \"CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING='UNICODE' LC_COLLATE='en_US.UTF8' LC_CTYPE='en_US.UTF8';\""
 su - postgres -c "psql -c \"UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';\""
 su - postgres -c "psql -c \"UPDATE pg_database SET datallowconn = FALSE WHERE datname = 'template1';\""
+
+apt-get install -y npm
+ln -s /usr/bin/nodejs /usr/bin/node
+npm install -g less
