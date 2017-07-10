@@ -3,9 +3,9 @@
 apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml libjpeg-dev libsasl2-dev \
-    libssl-dev python-dev
-apt-get install -y tmux vim wkhtmltopdf git curl wget tmux unzip postgresql
-apt-get install locales && locale-gen "en_US.UTF-8"
+    libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
+    postgresql locales
+locale-gen "en_US.UTF-8"
 
 pip install -U pip
 
@@ -19,7 +19,7 @@ useradd -d /home/odoo -m -s /bin/bash -p odoopwd odoo
 su - postgres -c "createuser -s odoo"
 
 su - odoo -c "git clone https://github.com/odoo/odoo.git"
-su - odoo -c "pip install -r ~/odoo/requirements.txt"
+pip install -r ~/odoo/requirements.txt
 
 su - postgres -c "psql -c \"UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1'\""
 su - postgres -c "psql -c \"DROP DATABASE template1;\""
