@@ -19,7 +19,7 @@ useradd -d /home/odoo -m -s /bin/bash -p odoopwd odoo
 su - postgres -c "createuser -s odoo"
 
 su - odoo -c "git clone https://github.com/odoo/odoo.git"
-pip install -r ~/odoo/requirements.txt
+pip install -r /home/odoo/odoo/requirements.txt
 
 su - postgres -c "psql -c \"UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1'\""
 su - postgres -c "psql -c \"DROP DATABASE template1;\""
