@@ -6,6 +6,8 @@ apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
     postgresql locales
 locale-gen "en_US.UTF-8"
+update-locale LANG="en_US.UTF-8"
+echo "LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
 
 pip install -U pip
 
@@ -20,12 +22,6 @@ su - postgres -c "createuser -s odoo"
 
 su - odoo -c "git clone https://github.com/odoo/odoo.git"
 pip install -r /home/odoo/odoo/requirements.txt
-
-su - postgres -c "psql -c \"UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1'\""
-su - postgres -c "psql -c \"DROP DATABASE template1;\""
-su - postgres -c "psql -c \"CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING='UNICODE' LC_COLLATE='en_US.UTF8' LC_CTYPE='en_US.UTF8';\""
-su - postgres -c "psql -c \"UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';\""
-su - postgres -c "psql -c \"UPDATE pg_database SET datallowconn = FALSE WHERE datname = 'template1';\""
 
 apt-get install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
