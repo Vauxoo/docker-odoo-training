@@ -1,4 +1,9 @@
 #!/bin/bash
+echo """You can install this script running:
+wget https://raw.githubusercontent.com/moylop260/docker-odoo-curso-basic/master/install.sh -O install.sh
+chmod +x install.sh
+sudo ./install.sh
+"""
 
 apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
