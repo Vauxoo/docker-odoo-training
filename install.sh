@@ -10,10 +10,15 @@ apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml libjpeg-dev libsasl2-dev \
     libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
     locales
-locale-gen "en_US.UTF-8 es_ES.UTF-8"
-update-locale LANG="en_US.UTF-8"
+
+# Configure locales
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen en_US.UTF-8
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+update-locale LANG=en_US.UTF-8
 echo "LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
 source /etc/bash.bashrc
+
 apt-get install -y postgresql
 
 pip install -U pip
