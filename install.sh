@@ -30,9 +30,9 @@ useradd -d /home/odoo -m -s /bin/bash -p odoopwd odoo
 su - postgres -c "createuser -s odoo"
 
 # Download odoo
-su - odoo -c "git clone https://github.com/odoo/odoo.git"
+wget https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt -O /tmp/odoo_req.txt
 # Install odoo dependencies
-pip install -r /home/odoo/odoo/requirements.txt
+pip install -Ur /tmp/odoo_req.txt
 apt-get install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
