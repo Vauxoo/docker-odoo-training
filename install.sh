@@ -25,14 +25,14 @@ apt-get install -y postgresql
 pip install -U pip
 
 /etc/init.d/postgresql start
-useradd -d /home/odoo -m -s /bin/bash -p odoopwd odoo
+useradd -d /home/myosusr -m -s /bin/bash -p myosurpwd myosusr
 
 su - postgres -c "createuser -s odoo"
 
 # Download odoo
-su - odoo -c "git clone https://github.com/odoo/odoo.git"
+su - myosusr -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
 # Install odoo dependencies
-pip install -r /home/odoo/odoo/requirements.txt
+pip install -Ur /home/myosusr/odoo-repo/requirements.txt
 apt-get install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
@@ -40,7 +40,7 @@ npm install -g less
 
 # configure vim IDE
 curl http://j.mp/spf13-vim3 -L -o - | sh
-su - odoo -c "touch /home/odoo/.vimrc"
+su - myosusr -c "touch /home/myosusr/.vimrc"
 echo -e """filetype plugin indent on
 \" show existing tab with 4 spaces width
 set tabstop=4
@@ -48,4 +48,4 @@ set tabstop=4
 set shiftwidth=4
 \" On pressing tab, insert 4 spaces
 set expandtab
-""" > /home/odoo/.vimrc
+""" > /home/myosusr/.vimrc

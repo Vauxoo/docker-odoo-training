@@ -5,7 +5,8 @@ RUN /install.sh && \
         find /var/tmp -type f -print0 | xargs -0r rm -rf && \
         find /var/log -type f -print0 | xargs -0r rm -rf && \
         find /var/lib/apt/lists -type f -print0 | xargs -0r rm -rf && \
-        echo 'odoo ALL=NOPASSWD: ALL' >> /etc/sudoers
+        echo 'myosusr ALL=NOPASSWD: ALL' >> /etc/sudoers
 
-USER odoo
-RUN git --git-dir=/home/odoo/odoo/.git gc
+USER myosusr
+RUN git --git-dir=/home/myosusr/odoo-repo/.git gc --aggressive && \
+        git --git-dir=/home/myosusr/odoo-repo/.git fetch origin 10.0 --depth=10
