@@ -9,7 +9,7 @@ apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml libjpeg-dev libsasl2-dev \
     libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
-    locales
+    locales tree
 
 # Configure locales
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
