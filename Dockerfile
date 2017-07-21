@@ -8,4 +8,4 @@ RUN /install.sh && \
         echo 'odoo ALL=NOPASSWD: ALL' >> /etc/sudoers
 
 USER odoo
-RUN git --git-dir=/home/odoo/odoo/.git gc --aggressive
+RUN git --git-dir=/home/odoo/odoo/.git gc
