@@ -8,8 +8,4 @@ RUN /install.sh && \
         echo 'odoo ALL=NOPASSWD: ALL' >> /etc/sudoers
 
 USER odoo
-RUN git init odoo-repo && \
-        git --git-dir=~/odoo-repo/.git remote add origin https://github.com/odoo/odoo.git && \
-        git --git-dir=~/odoo-repo/.git fetch master --depth=1 && \
-        git --git-dir=~/odoo-repo/.git fetch 10.0 --depth=1 && \
-        git --git-dir=/home/odoo/odoo/.git gc gc --aggressive
+RUN git --git-dir=/home/odoo/odoo/.git gc
