@@ -27,7 +27,7 @@ pip install -U pip
 /etc/init.d/postgresql start
 useradd -d /home/myosusr -m -s /bin/bash -p myosurpwd myosusr
 
-su - postgres -c "createuser -s odoo"
+su - postgres -c "createuser -s myosusr"
 
 # Download odoo
 su - myosusr -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
