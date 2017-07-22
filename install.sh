@@ -16,7 +16,7 @@ echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen en_US.UTF-8
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 update-locale LANG=en_US.UTF-8
-echo "LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
+echo -e "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nexport PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
 source /etc/bash.bashrc
 
 # Install after configure locales to auto-create cluster with UTF-8
