@@ -8,5 +8,6 @@ RUN /install.sh && \
         echo 'myosusr ALL=NOPASSWD: ALL' >> /etc/sudoers
 
 USER myosusr
+WORKDIR /home/myosusr
 RUN git --git-dir=/home/myosusr/odoo-repo/.git gc --aggressive && \
         git --git-dir=/home/myosusr/odoo-repo/.git fetch origin 10.0 --depth=10
