@@ -2,8 +2,9 @@
 echo """You can install this script running:
 wget https://raw.githubusercontent.com/moylop260/docker-odoo-curso-basic/master/install.sh -O install.sh
 chmod +x install.sh
-sudo ./install.sh
+sudo ./install.sh myusros  # Change 'myusros' to use your custom OS' user name
 """
+export USER=$1
 
 apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
@@ -25,14 +26,14 @@ apt-get install -y postgresql
 pip install -U pip
 
 /etc/init.d/postgresql start
-useradd -d /home/myosusr -m -s /bin/bash -p myosurpwd myosusr
+useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
 
-su - postgres -c "createuser -s myosusr"
+su - postgres -c "createuser -s ${USER}"
 
 # Download odoo
-su - myosusr -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
+su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
 # Install odoo dependencies
-pip install -Ur /home/myosusr/odoo-repo/requirements.txt
+pip install -Ur /home/${USER}/odoo-repo/requirements.txt
 apt-get install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
@@ -40,9 +41,9 @@ npm install -g less
 
 # configure vim IDE
 git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
-su - myosusr -c "/tmp/spf13-vim/bootstrap.sh"
-su - myosusr -c "mkdir -p ~/.vim/spell"
-su - myosusr -c "wget -q http://ftp.vim.org/pub/vim/runtime/spell/es.utf-8.spl -O ~/.vim/spell/es.utf-8.spl"
+su - ${USER} -c "/tmp/spf13-vim/bootstrap.sh"
+su - ${USER} -c "mkdir -p ~/.vim/spell"
+su - ${USER} -c "wget -q http://ftp.vim.org/pub/vim/runtime/spell/es.utf-8.spl -O ~/.vim/spell/es.utf-8.spl"
 echo -e """filetype plugin indent on
 \" show existing tab with 4 spaces width
 set tabstop=4
@@ -54,6 +55,6 @@ colorscheme heliotrope
 \" Disable pymode because show ImporError
 let g:pymode=0
 set spelllang=en,es
-""" >> /home/myosusr/.vimrc
-sed -i 's/ set mouse\=a/\"set mouse\=a/g' /home/myosusr/.vimrc
-sed -i "s/let g:neocomplete#enable_at_startup = 1/let g:neocomplete#enable_at_startup = 0/g" /home/myosusr/.vimrc
+""" >> /home/${USER}/.vimrc
+sed -i 's/ set mouse\=a/\"set mouse\=a/g' /home/${USER}/.vimrc
+sed -i "s/let g:neocomplete#enable_at_startup = 1/let g:neocomplete#enable_at_startup = 0/g" /home/${USER}/.vimrc
