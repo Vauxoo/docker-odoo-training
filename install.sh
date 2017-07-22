@@ -41,7 +41,6 @@ npm install -g less
 # configure vim IDE
 git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
 su - myosusr -c "/tmp/spf13-vim/bootstrap.sh"
-su - myosusr -c "touch /home/myosusr/.vimrc"
 echo -e """filetype plugin indent on
 \" show existing tab with 4 spaces width
 set tabstop=4
@@ -50,4 +49,8 @@ set shiftwidth=4
 \" On pressing tab, insert 4 spaces
 set expandtab
 colorscheme heliotrope
+\" Disable pymode because show ImporError
+let g:pymode=0
 """ >> /home/myosusr/.vimrc
+sed -i 's/ set mouse\=a/\"set mouse\=a/g' /home/myosusr/.vimrc
+sed -i "s/let g:neocomplete#enable_at_startup = 1/let g:neocomplete#enable_at_startup = 0/g" /home/myosusr/.vimrc
