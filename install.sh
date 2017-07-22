@@ -39,8 +39,8 @@ npm install -g less
 (cd /usr/bin && wget -qO- -t 1 --timeout=240 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz | tar -xJ --strip-components=2 wkhtmltox/bin/wkhtmltopdf)
 
 # configure vim IDE
-wget http://j.mp/spf13-vim3 -O /tmp/spf13-vim3 && chmod +x /tmp/spf13-vim3
-su - myosusr -c "/tmp/spf13-vim3"
+git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
+su - myosusr -c "/tmp/spf13-vim/bootstrap.sh"
 su - myosusr -c "touch /home/myosusr/.vimrc"
 echo -e """filetype plugin indent on
 \" show existing tab with 4 spaces width
