@@ -39,6 +39,9 @@ ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
 (cd /usr/bin && wget -qO- -t 1 --timeout=240 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz | tar -xJ --strip-components=2 wkhtmltox/bin/wkhtmltopdf)
 
+# tools
+pip install -U bpython
+
 # configure vim IDE
 git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
 su - ${USER} -c "/tmp/spf13-vim/bootstrap.sh"
