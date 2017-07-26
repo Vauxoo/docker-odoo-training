@@ -58,4 +58,3 @@ set spelllang=en,es
 """ >> /home/${USER}/.vimrc
 sed -i 's/ set mouse\=a/\"set mouse\=a/g' /home/${USER}/.vimrc
 sed -i "s/let g:neocomplete#enable_at_startup = 1/let g:neocomplete#enable_at_startup = 0/g" /home/${USER}/.vimrc
-sed -i 's/ set autoindent /\"set autoindent/g' /home/${USER}/.vimrc
