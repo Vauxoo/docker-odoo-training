@@ -13,7 +13,13 @@ apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
     locales tree sudo
 
-# Configure locales
+# Create user of the Operating System.
+useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
+
+# Upgrade python package manager pip
+pip install -U pip
+
+# Configure locales to avoid coding errors
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen en_US.UTF-8
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
@@ -21,18 +27,14 @@ update-locale LANG=en_US.UTF-8
 echo -e "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nexport PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
 source /etc/bash.bashrc
 
-# Install after configure locales to auto-create cluster with UTF-8
+# Install postgresql (after configure locales to auto-create cluster with encoding UTF-8)
 apt-get install -y postgresql
-
-pip install -U pip
-
 /etc/init.d/postgresql start
-useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
-
 su - postgres -c "createuser -s ${USER}"
 
 # Download odoo
 su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
+
 # Install odoo dependencies
 pip install -Ur /home/${USER}/odoo-repo/requirements.txt
 apt-get install -y npm
@@ -40,7 +42,7 @@ ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
 (cd /usr/bin && wget -qO- -t 1 --timeout=240 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz | tar -xJ --strip-components=2 wkhtmltox/bin/wkhtmltopdf)
 
-# tools
+# Install python tools
 pip install -U bpython
 
 # configure vim IDE
