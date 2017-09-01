@@ -1,9 +1,9 @@
 #!/bin/bash
-echo """You can install this script using "root" user and running:
+echo """You can install this script using 'root' user (using 'sudo su - root') and running:
 apt-get update && apt-get install -y wget
 wget https://raw.githubusercontent.com/moylop260/docker-odoo-curso-basic/master/install.sh -O install.sh
 chmod +x install.sh
-sudo ./install.sh myusros  # Change 'myusros' to use your custom OS' user name
+./install.sh myusros  # Change 'myusros' to use your custom OS' user name
 """
 export USER=$1
 
