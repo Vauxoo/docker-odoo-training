@@ -10,8 +10,9 @@ export USER=$1
 apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml libjpeg-dev libsasl2-dev \
-    libssl-dev python-dev tmux vim wkhtmltopdf git curl wget tmux unzip \
-    locales tree sudo
+    libssl-dev python-dev \
+    curl wget unzip locales tree sudo \
+    tmux vim wkhtmltopdf git
 
 # Create user of the Operating System.
 useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
