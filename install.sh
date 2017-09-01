@@ -9,7 +9,7 @@ export USER=$1
 
 apt-get update
 apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
-    libsasl2-dev libldap2-dev python-lxml libjpeg-dev libsasl2-dev \
+    libsasl2-dev libldap2-dev python-lxml libjpeg-dev \
     libssl-dev python-dev \
     curl wget unzip locales tree sudo \
     tmux vim wkhtmltopdf git
