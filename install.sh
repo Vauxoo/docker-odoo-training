@@ -8,9 +8,9 @@ chmod +x install.sh
 export USER=$1
 
 apt-get update
-apt-get install -y python-pip libxml2-dev libxslt-dev libevent-dev \
-    libsasl2-dev libldap2-dev python-lxml libjpeg-dev \
-    libssl-dev python-dev \
+apt-get install -y python-pip python3-pip libxml2-dev libxslt-dev libevent-dev \
+    libsasl2-dev libldap2-dev python-lxml python3-lxml libjpeg-dev \
+    libssl-dev python-dev python3-dev \
     curl wget unzip locales tree sudo \
     tmux vim wkhtmltopdf git
 
@@ -19,6 +19,7 @@ useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
 
 # Upgrade python package manager pip
 pip install -U pip
+pip3 install -U pip
 
 # Configure locales to avoid coding errors
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
@@ -36,8 +37,13 @@ su - postgres -c "createuser -s ${USER}"
 # Download odoo
 su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
 
-# Install odoo dependencies
-pip install -Ur /home/${USER}/odoo-repo/requirements.txt
+# Install odoo dependencies for py2 and py3
+python3.5 -m install -Ur /home/${USER}/odoo-repo/requirements.txt
+
+wget https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O /tmp/req10.txt
+python2.7 -m pip install -Ur /tmp/req10.txt
+rm /tmp/req10.txt
+
 apt-get install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
