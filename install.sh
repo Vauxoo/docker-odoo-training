@@ -50,7 +50,8 @@ npm install -g less
 (cd /usr/bin && wget -qO- -t 1 --timeout=240 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz | tar -xJ --strip-components=2 wkhtmltox/bin/wkhtmltopdf)
 
 # Install python tools
-pip install -U bpython
+python2.7 -m pip install -U bpython
+python3.5 -m pip install -U bpython
 
 # configure vim IDE
 git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
