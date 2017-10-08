@@ -38,7 +38,7 @@ su - postgres -c "createuser -s ${USER}"
 su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
 
 # Install odoo dependencies for py2 and py3
-python3.5 -m install -Ur /home/${USER}/odoo-repo/requirements.txt
+python3.5 -m pip install -Ur /home/${USER}/odoo-repo/requirements.txt
 
 wget https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O /tmp/req10.txt
 python2.7 -m pip install -Ur /tmp/req10.txt

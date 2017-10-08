@@ -9,5 +9,7 @@ RUN /install.sh myosusr && \
 
 USER myosusr
 WORKDIR /home/myosusr
-RUN git --git-dir=/home/myosusr/odoo-repo/.git gc --aggressive && \
-        git --git-dir=/home/myosusr/odoo-repo/.git fetch origin 10.0 --depth=10
+RUN git --git-dir=/home/myosusr/odoo-repo/.git gc --aggressive
+# Testing
+RUN sudo /etc/init.d/postgresql start && \
+    /home/myosusr/odoo-repo/odoo-bin --stop-after-init
