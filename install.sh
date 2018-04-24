@@ -31,6 +31,7 @@ source /etc/bash.bashrc
 
 # Install postgresql (after configure locales to auto-create cluster with encoding UTF-8)
 apt-get install -y postgresql
+pg_createcluster 9.5 main95 -e=utf8 || true
 /etc/init.d/postgresql start
 su - postgres -c "createuser -s ${USER}"
 
