@@ -16,10 +16,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # Display the VirtualBox GUI when booting the machine
         vb.gui = false
         # Customize the amount of memory on the VM:
-        vb.memory       = "500"
+        vb.memory       = "1024"
     end
     #Aprovisionamiento
-    config.vm.provision :shell do |shell|
-        shell.path      = "install.sh"
-    end
+    config.vm.provision "shell", inline: "cd /vagrant && ./install.sh myusros"
 end
