@@ -31,6 +31,10 @@ por lo que es probable que se tarde varios minutos.
 
     vagrant halt 
 
+### Ingresar al servidor:
+
+    vagrant ssh
+
 ### Aplicar cambios en los archivos de configuración
 
     vagrant reload --provision
@@ -50,6 +54,10 @@ Los datos en las carpetas de los proyectos no se ven afectados.
     
 Si después de ejecutar este comando ejecutamos una vez mas vagrant up, 
 la maquina se volverá a generar desde cero.
+
+## Conectar carpetas.
+Para poder uso de las bondades deberás de configurar los puntos de montaje en el Vagrantfile,
+Por favor contacta conmigo si necesitas que esto pase
 
 # Cualquier otra duda o problema, pueden contactarme para revisarlo y corregirlo.
 @author Ricardo Ruiz Cruz <ricardo.ruiz@benandfrank.com>
