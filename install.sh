@@ -36,7 +36,7 @@ pg_createcluster 9.5 main95 -e=utf8 || true
 su - postgres -c "createuser -s ${USER}"
 
 # Download odoo
-su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git odoo-repo"
+su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git -b 11.0 odoo-repo"
 
 # Install odoo dependencies for py2 and py3
 LC_ALL=C.UTF-8 LANG=C.UTF-8 python3.5 -m pip install -Ur /home/${USER}/odoo-repo/requirements.txt
