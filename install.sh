@@ -35,6 +35,11 @@ pg_createcluster 9.5 main95 -e=utf8 || true
 /etc/init.d/postgresql start
 su - postgres -c "createuser -s ${USER}"
 
+# Disable ssl verify in order to avoid the following error:
+#  - server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none
+git config --global http.sslverify false
+su - ${USER} -c "git config --global http.sslverify false"
+
 # Download odoo
 su - ${USER} -c "git clone --single-branch --depth=10 https://github.com/odoo/odoo.git -b 11.0 odoo-repo"
 
