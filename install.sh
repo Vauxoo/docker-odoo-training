@@ -6,6 +6,7 @@ chmod +x install.sh
 ./install.sh myusros  # Change 'myusros' to use your custom OS' user name
 """
 export USER=$1
+export DEBIAN_FRONTEND=noninteractive
 
 apt update
 apt install -y python-pip python3-pip libxml2-dev libxslt-dev libevent-dev \
@@ -27,7 +28,7 @@ python3 -m pip install -U --force-reinstall pip==9.0.3
 # Configure locales to avoid coding errors
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen en_US.UTF-8
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+dpkg-reconfigure locales
 update-locale LANG=en_US.UTF-8
 echo -e "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nexport PYTHONIOENCODING=UTF-8" | tee -a /etc/bash.bashrc
 source /etc/bash.bashrc
