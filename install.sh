@@ -1,14 +1,14 @@
 #!/bin/bash
 echo """You can install this script using 'root' user (using 'sudo su - root') and running:
-apt-get update && apt-get install -y wget
+apt update && apt install -y wget
 wget https://raw.githubusercontent.com/Vauxoo/docker-odoo-training/master/install.sh -O install.sh
 chmod +x install.sh
 ./install.sh myusros  # Change 'myusros' to use your custom OS' user name
 """
 export USER=$1
 
-apt-get update
-apt-get install -y python-pip python3-pip libxml2-dev libxslt-dev libevent-dev \
+apt update
+apt install -y python-pip python3-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml python3-lxml libjpeg-dev \
     libssl-dev python-dev python3-dev \
     curl wget unzip locales tree sudo \
@@ -33,7 +33,7 @@ echo -e "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_
 source /etc/bash.bashrc
 
 # Install postgresql (after configure locales to auto-create cluster with encoding UTF-8)
-apt-get install -y postgresql
+apt install -y postgresql
 pg_createcluster 9.5 main95 -e=utf8 || true
 /etc/init.d/postgresql start
 su - postgres -c "createuser -s ${USER}"
@@ -54,7 +54,7 @@ wget https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O /tmp/r
 python2 -m pip install --disable-pip-version-check -Ur /tmp/req10.txt
 rm /tmp/req10.txt
 
-apt-get install -y npm
+apt install -y npm
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g less
 (cd /usr/bin && wget -qO- -t 1 --timeout=240 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz | tar -xJ --strip-components=2 wkhtmltox/bin/wkhtmltopdf)
