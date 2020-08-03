@@ -44,12 +44,10 @@ su - postgres -c "createuser -s ${USER}"
 git config --global http.sslverify false
 su - ${USER} -c "git config --global http.sslverify false"
 
-# Download odoo
-su - ${USER} -c "git clone https://github.com/odoo/odoo.git -b 13.0 odoo-repo"
-
 # Install odoo dependencies for py2 and py3
 LC_ALL=C.UTF-8 LANG=C.UTF-8 python3 -m pip install --disable-pip-version-check --force-reinstall -U setuptools
-LC_ALL=C.UTF-8 LANG=C.UTF-8 python3 -m pip install --disable-pip-version-check --force-reinstall -Ur /home/${USER}/odoo-repo/requirements.txt
+wget https://raw.githubusercontent.com/odoo/odoo/13.0/requirements.txt -O /tmp/req13.txt
+LC_ALL=C.UTF-8 LANG=C.UTF-8 python3 -m pip install --disable-pip-version-check --force-reinstall -Ur /tmp/req13.txt
 
 wget https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O /tmp/req10.txt
 python2 -m pip install --disable-pip-version-check -Ur /tmp/req10.txt
@@ -63,6 +61,9 @@ npm install -g less
 # Install python tools
 python2 -m pip install --disable-pip-version-check -U bpython
 python3 -m pip install --disable-pip-version-check -U bpython
+
+# Download Odoo
+su - ${USER} -c "git clone https://github.com/odoo/odoo.git -b 13.0 --depth=10 ${USER}/odoo-repo"
 
 # configure vim IDE
 git clone --depth=1 --single-branch https://github.com/spf13/spf13-vim.git /tmp/spf13-vim
