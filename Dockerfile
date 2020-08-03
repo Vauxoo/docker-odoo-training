@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 ADD install.sh /install.sh
 RUN /install.sh myosusr && \
         rm -rf /tmp/* && \
