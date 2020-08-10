@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt update
 apt install -y curl git \
-    libevent-dev libjpeg-dev libldap2-dev libsasl2-dev libssl-dev libxml2-dev libxslt-dev \
+    libevent-dev libjpeg-dev libldap2-dev libpq-dev libsasl2-dev libssl-dev libxml2-dev libxslt-dev \
     locales \
     python3-dev python3-lxml python3-pip \
     sudo tmux tree unzip vim wget \
