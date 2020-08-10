@@ -9,11 +9,16 @@ export USER=$1
 export DEBIAN_FRONTEND=noninteractive
 
 apt update
-apt install -y python-pip python3-pip libxml2-dev libxslt-dev libevent-dev \
+apt install -y python3-pip libxml2-dev libxslt-dev libevent-dev \
     libsasl2-dev libldap2-dev python-lxml python3-lxml libjpeg-dev \
-    libssl-dev python-dev python3-dev \
+    libssl-dev python3-dev \
     curl wget unzip locales tree sudo \
     tmux vim wkhtmltopdf git
+
+# Ubuntu 20.04 show the following error:
+# E: Unable to locate package python-pip
+# But running to be compatible with Ubuntu 18.04
+apt install -y python-pip python-dev
 
 # Create user of the Operating System.
 useradd -d /home/${USER} -m -s /bin/bash -p ${USER}pwd ${USER}
