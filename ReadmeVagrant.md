@@ -58,7 +58,3 @@ la maquina se volverá a generar desde cero.
 ## Conectar carpetas.
 Para poder uso de las bondades deberás de configurar los puntos de montaje en el Vagrantfile,
 Por favor contacta conmigo si necesitas que esto pase
-
-
-# Cualquier otra duda o problema, pueden contactarme para revisarlo y corregirlo.
-@author Ricardo Ruiz Cruz <ricardo.ruiz@benandfrank.com>
